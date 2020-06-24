@@ -1,16 +1,17 @@
-package com.example.todo3;
+package com.example.todo3.intro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.example.todo3.SharedPreference;
+import com.example.todo3.main.MainActivity;
+import com.example.todo3.R;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -23,8 +24,14 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        SpringDotsIndicator springDotsIndicator = findViewById(R.id.spring_dots_indicator);
+
+
+
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+
+        springDotsIndicator.setViewPager(viewPager);
 
         btnNext = findViewById(R.id.btn_next);
         btnSkip = findViewById(R.id.btn_skip);
@@ -34,7 +41,9 @@ public class IntroActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreference.getInstance(getApplicationContext()).saveShown();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
         });
     }
@@ -60,7 +69,9 @@ public class IntroActivity extends AppCompatActivity {
                         btnNext.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                SharedPreference.getInstance(getApplicationContext()).saveShown();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                             }
                         });
                         btnSkip.setVisibility(View.GONE);

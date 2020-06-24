@@ -1,4 +1,4 @@
-package com.example.todo3;
+package com.example.todo3.intro;
 
 
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.todo3.R;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 public class IntroFragment extends Fragment {
     public ViewPager viewPager;
@@ -32,8 +35,11 @@ public class IntroFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         TextView textTitle = view.findViewById(R.id.textTitle);
+
         viewPager = view.findViewById(R.id.viewPager);
+
 
         final int pos = getArguments().getInt("pos");
         switch (pos) {
